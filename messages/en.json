@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "book": "Book Now"
+  },
+  "hero": {
+    "title": "Fields Barbers",
+    "subtitle": "Masters of the Blade",
+    "tagline": "International experience in the heart of Córdoba",
+    "description": "Modern and classic cuts with bilingual professional service",
+    "cta": "Book Appointment",
+    "ctaSecondary": "View Services"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "International Experience",
+    "bio": "Fernando Campos, founder of Fields Barbers, honed his craft over nearly two years in Dublin, working at some of the city's most prestigious barbershops. His international experience and fluent English allow him to serve a diverse clientele, bringing the same level of excellence you'd find in Europe's finest barbershops to the heart of Córdoba.",
+    "differentiator": "English & Spanish service",
+    "experience": "Dublin experience",
+    "passion": "Passion for detail"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Professional barbering services",
+    "price": "€",
+    "duration": "min",
+    "bookNow": "Book Now"
+  },
+  "contact": {
+    "title": "Find Us",
+    "subtitle": "Visit us in the heart of Córdoba",
+    "address": "Address",
+    "phone": "Phone",
+    "getDirections": "Get Directions",
+    "followUs": "Follow Us"
+  },
+  "schedule": {
+    "openingHours": "Opening Hours"
+  },
+  "footer": {
+    "tagline": "Your trusted barbershop in Córdoba",
+    "rights": "All rights reserved",
+    "quickLinks": "Quick Links",
+    "social": "Social Media"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "book": "Reservar Cita"
+  },
+  "hero": {
+    "title": "Fields Barbers",
+    "subtitle": "Maestros de la Navaja",
+    "tagline": "Experiencia internacional en el corazón de Córdoba",
+    "description": "Cortes modernos y clásicos con atención profesional bilingüe",
+    "cta": "Reservar Cita",
+    "ctaSecondary": "Ver Servicios"
+  },
+  "about": {
+    "title": "Sobre Nosotros",
+    "subtitle": "Experiencia Internacional",
+    "bio": "Fernando Campos, fundador de Fields Barbers, perfeccionó su arte durante casi dos años en Dublín, donde trabajó en algunas de las barberías más prestigiosas de la ciudad. Su experiencia internacional y dominio del inglés le permiten atender a una clientela diversa, ofreciendo el mismo nivel de excelencia que encontrarías en las mejores barberías europeas, aquí en el corazón de Córdoba.",
+    "differentiator": "Servicio en inglés y español",
+    "experience": "Experiencia en Dublín",
+    "passion": "Pasión por el detalle"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Servicios profesionales de barbería",
+    "price": "€",
+    "duration": "min",
+    "bookNow": "Reservar"
+  },
+  "contact": {
+    "title": "Encuéntranos",
+    "subtitle": "Visítanos en pleno centro de Córdoba",
+    "address": "Dirección",
+    "phone": "Teléfono",
+    "getDirections": "Cómo llegar",
+    "followUs": "Síguenos"
+  },
+  "schedule": {
+    "openingHours": "Horario de Apertura"
+  },
+  "footer": {
+    "tagline": "Tu barbería de confianza en Córdoba",
+    "rights": "Todos los derechos reservados",
+    "quickLinks": "Enlaces",
+    "social": "Redes Sociales"
+  }
+}
