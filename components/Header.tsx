@@ -1,51 +1,179 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslations } from 'next-intl';
-import { Menu, X } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from './ui/Button';
-import { LanguageSwitcher } from './LanguageSwitcher';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, stagger } from "framer-motion";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "./ui/Button";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+
+// Hook to measure container dimensions
+const useDimensions = (ref: React.RefObject<HTMLDivElement | null>) => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (ref.current) {
+      const measure = () => {
+        setDimensions({
+          width: ref.current?.offsetWidth || 0,
+          height: ref.current?.offsetHeight || 0,
+        });
+      };
+      measure();
+      window.addEventListener("resize", measure);
+      return () => window.removeEventListener("resize", measure);
+    }
+  }, [ref]);
+
+  return dimensions;
+};
+
+// Animated Menu Toggle Button
+const MenuToggle = ({ toggle, isOpen }: { toggle: () => void; isOpen: boolean }) => (
+  <motion.button
+    onClick={toggle}
+    className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center text-white"
+    aria-label="Toggle menu"
+    animate={isOpen ? "open" : "closed"}
+  >
+    <svg width="23" height="23" viewBox="0 0 23 23">
+      <Path
+        variants={{
+          closed: { d: "M 2 2.5 L 20 2.5" },
+          open: { d: "M 3 16.5 L 17 2.5" },
+        }}
+      />
+      <Path
+        d="M 2 9.423 L 20 9.423"
+        variants={{
+          closed: { opacity: 1 },
+          open: { opacity: 0 },
+        }}
+        transition={{ duration: 0.1 }}
+      />
+      <Path
+        variants={{
+          closed: { d: "M 2 16.346 L 20 16.346" },
+          open: { d: "M 3 2.5 L 17 16.346" },
+        }}
+      />
+    </svg>
+  </motion.button>
+);
+
+const Path = (props: any) => (
+  <motion.path
+    fill="transparent"
+    strokeWidth="3"
+    stroke="currentColor"
+    strokeLinecap="round"
+    {...props}
+  />
+);
+
+// Animation variants
+const sidebarVariants = {
+  open: (height = 1000) => ({
+    clipPath: `circle(${height * 2 + 200}px at calc(100% - 40px) 40px)`,
+    transition: {
+      type: "spring" as const,
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: {
+    clipPath: "circle(30px at calc(100% - 40px) 40px)",
+    transition: {
+      delay: 0.5,
+      type: "spring" as const,
+      stiffness: 400,
+      damping: 40,
+    },
+  },
+};
+
+const navVariants = {
+  open: {
+    transition: {
+      delayChildren: stagger(0.07, { startDelay: 0.2 }),
+    },
+  },
+  closed: {
+    transition: {
+      delayChildren: stagger(0.05, { from: "last" }),
+    },
+  },
+};
+
+const itemVariants = {
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      y: { stiffness: 1000, velocity: -100 },
+    },
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+    transition: {
+      y: { stiffness: 1000 },
+    },
+  },
+};
 
 export const Header: React.FC = () => {
-  const t = useTranslations('nav');
+  const t = useTranslations("nav");
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { height } = useDimensions(containerRef);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Prevent body scroll when menu is open
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
   const navLinks = [
-    { href: '#home', label: t('home') },
-    { href: '#services', label: t('services') },
-    { href: '#about', label: t('about') },
-    { href: '#contact', label: t('contact') },
+    { href: "#home", label: t("home") },
+    { href: "#about", label: t("about") },
+    { href: "#services", label: t("services") },
+    { href: "#contact", label: t("contact") },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-dark/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        isScrolled ? "bg-dark/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
-      <nav className="container-custom">
+      <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="#home" className="flex items-center gap-2">
+          <Link href="#home" className="flex items-center gap-2 relative z-50">
             <Image
               src="/images/logo-white.svg"
               alt="Fields Barbers"
               width={180}
               height={120}
-              className="h-12 w-auto"
+              className="h-24 w-auto"
               priority
             />
           </Link>
@@ -64,54 +192,74 @@ export const Header: React.FC = () => {
 
             <LanguageSwitcher />
 
-            <Button variant="primary" size="sm" href={`https://booksy.com/es-es/155435_fields-barbers_barberia_27080_cordoba`}>
-              {t('book')}
+            <Button
+              variant="primary"
+              size="sm"
+              href={`https://booksy.com/es-es/155435_fields-barbers_barberia_27080_cordoba`}
+            >
+              {t("book")}
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-white p-2"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Toggle */}
+          <MenuToggle toggle={() => setIsOpen(!isOpen)} isOpen={isOpen} />
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-dark border-t border-gold/20"
-          >
-            <div className="container-custom py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-white hover:text-gold transition-colors py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
+      {/* Mobile Menu with Circular Reveal */}
+      <motion.nav
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        custom={height}
+        ref={containerRef}
+        className="lg:hidden fixed inset-0 w-full"
+        style={{ pointerEvents: isOpen ? "auto" : "none" }}
+      >
+        {/* Background with circular reveal */}
+        <motion.div
+          className="absolute inset-0 bg-dark"
+          variants={sidebarVariants}
+        />
 
-              <div className="pt-4 border-t border-gold/20">
-                <LanguageSwitcher />
-              </div>
+        {/* Navigation items */}
+        <motion.ul
+          variants={navVariants}
+          className="absolute top-24 left-0 right-0 px-8 space-y-6"
+        >
+          {navLinks.map((link) => (
+            <motion.li
+              key={link.href}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <a
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-white hover:text-gold transition-colors text-2xl font-medium"
+              >
+                {link.label}
+              </a>
+            </motion.li>
+          ))}
 
-              <Button variant="primary" className="w-full" href="https://booksy.com/es-es/155435_fields-barbers_barberia_27080_cordoba">
-                {t('book')}
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          {/* Language Switcher */}
+          <motion.li variants={itemVariants} className="pt-4 border-t border-gold/20">
+            <LanguageSwitcher />
+          </motion.li>
+
+          {/* Book Button */}
+          <motion.li variants={itemVariants} className="pt-4">
+            <Button
+              variant="primary"
+              className="w-full"
+              href="https://booksy.com/es-es/155435_fields-barbers_barberia_27080_cordoba"
+            >
+              {t("book")}
+            </Button>
+          </motion.li>
+        </motion.ul>
+      </motion.nav>
     </header>
   );
 };
