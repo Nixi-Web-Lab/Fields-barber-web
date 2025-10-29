@@ -83,12 +83,12 @@ const sidebarVariants = {
     },
   }),
   closed: {
-    clipPath: "circle(30px at calc(100% - 40px) 40px)",
+    clipPath: "circle(0px at calc(100% - 40px) 40px)",
     transition: {
-      delay: 0.5,
+      delay: 0.2,
       type: "spring" as const,
-      stiffness: 400,
-      damping: 40,
+      stiffness: 500,
+      damping: 45,
     },
   },
 };
@@ -159,49 +159,56 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-dark/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="#home" className="flex items-center gap-2 relative z-50">
-            <Image
-              src="/images/logo-white.svg"
-              alt="Fields Barbers"
-              width={180}
-              height={120}
-              className="h-24 w-auto"
-              priority
-            />
-          </Link>
+    <>
+      {/* Desktop Header */}
+      <header
+        className={`hidden lg:block fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled  ? "bg-dark/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
+      >
+        <div className="container-custom">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="#home" className="flex items-center gap-2 relative z-50">
+              <Image
+                src="/images/logo-white.svg"
+                alt="Fields Barbers"
+                width={180}
+                height={120}
+                className="h-24 w-auto"
+                priority
+              />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-white hover:text-gold transition-colors font-medium"
+            {/* Desktop Navigation */}
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-white hover:text-gold transition-colors font-medium"
+                >
+                  {link.label}
+                </a>
+              ))}
+
+              <LanguageSwitcher />
+
+              <Button
+                variant="primary"
+                size="sm"
+                href={`https://booksy.com/es-es/155435_fields-barbers_barberia_27080_cordoba`}
               >
-                {link.label}
-              </a>
-            ))}
-
-            <LanguageSwitcher />
-
-            <Button
-              variant="primary"
-              size="sm"
-              href={`https://booksy.com/es-es/155435_fields-barbers_barberia_27080_cordoba`}
-            >
-              {t("book")}
-            </Button>
+                {t("book")}
+              </Button>
+            </div>
           </div>
+        </div>
+      </header>
 
-          {/* Mobile Menu Toggle */}
+      {/* Mobile Menu Toggle - Fixed top right */}
+      <div className="lg:hidden fixed top-4 right-4 z-50">
+        <div className="bg-black rounded-full p-2 shadow-xl border-2 border-gold/50">
           <MenuToggle toggle={() => setIsOpen(!isOpen)} isOpen={isOpen} />
         </div>
       </div>
@@ -212,12 +219,20 @@ export const Header: React.FC = () => {
         animate={isOpen ? "open" : "closed"}
         custom={height}
         ref={containerRef}
-        className="lg:hidden fixed inset-0 w-full"
+        className="lg:hidden fixed inset-0 w-full z-40"
         style={{ pointerEvents: isOpen ? "auto" : "none" }}
       >
-        {/* Background with circular reveal */}
+        {/* Full background overlay - fades in/out */}
         <motion.div
-          className="absolute inset-0 bg-dark"
+          className="absolute inset-0 bg-dark/95 backdrop-blur-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          transition={{ duration: 0.15 }}
+        />
+
+        {/* Decorative circular reveal effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-b from-dark via-dark to-dark/90"
           variants={sidebarVariants}
         />
 
@@ -260,6 +275,6 @@ export const Header: React.FC = () => {
           </motion.li>
         </motion.ul>
       </motion.nav>
-    </header>
+    </>
   );
 };
