@@ -1,4 +1,4 @@
-export const getLocalBusinessSchema = (locale: 'es' | 'en') => {
+export const getLocalBusinessSchema = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'HairSalon',

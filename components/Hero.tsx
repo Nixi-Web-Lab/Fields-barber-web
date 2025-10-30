@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 import { Button } from './ui/Button';
 
 export const Hero: React.FC = () => {
@@ -13,10 +14,11 @@ export const Hero: React.FC = () => {
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* SVG Background with blur effect */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img
+        <Image
           src="/images/barber_razor_white.svg"
           alt=""
-          className="w-full h-full object-contain scale-150 opacity-35 blur-[1.2px] md:scale-95"
+          fill
+          className="object-contain scale-150 opacity-35 blur-[1.2px] md:scale-95"
           aria-hidden="true"
         />
       </div>

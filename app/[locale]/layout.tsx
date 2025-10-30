@@ -44,7 +44,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   const messages = await getMessages();
-  const schema = getLocalBusinessSchema(locale as 'es' | 'en');
+  const schema = getLocalBusinessSchema();
 
   return (
     <html

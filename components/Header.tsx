@@ -62,7 +62,7 @@ const MenuToggle = ({ toggle, isOpen }: { toggle: () => void; isOpen: boolean })
   </motion.button>
 );
 
-const Path = (props: any) => (
+const Path = (props: React.ComponentProps<typeof motion.path>) => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
