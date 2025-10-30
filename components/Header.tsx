@@ -35,10 +35,12 @@ const MenuToggle = ({ toggle, isOpen }: { toggle: () => void; isOpen: boolean })
     onClick={toggle}
     className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center text-white"
     aria-label="Toggle menu"
+    initial="closed"
     animate={isOpen ? "open" : "closed"}
   >
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
+        d="M 2 2.5 L 20 2.5"
         variants={{
           closed: { d: "M 2 2.5 L 20 2.5" },
           open: { d: "M 3 16.5 L 17 2.5" },
@@ -53,6 +55,7 @@ const MenuToggle = ({ toggle, isOpen }: { toggle: () => void; isOpen: boolean })
         transition={{ duration: 0.1 }}
       />
       <Path
+        d="M 2 16.346 L 20 16.346"
         variants={{
           closed: { d: "M 2 16.346 L 20 16.346" },
           open: { d: "M 3 2.5 L 17 16.346" },
@@ -239,12 +242,14 @@ export const Header: React.FC = () => {
         {/* Navigation items */}
         <motion.ul
           variants={navVariants}
+          initial="closed"
           className="absolute top-24 left-0 right-0 px-8 space-y-6"
         >
           {navLinks.map((link) => (
             <motion.li
               key={link.href}
               variants={itemVariants}
+              initial="closed"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -259,12 +264,12 @@ export const Header: React.FC = () => {
           ))}
 
           {/* Language Switcher */}
-          <motion.li variants={itemVariants} className="pt-4 border-t border-gold/20">
+          <motion.li variants={itemVariants} initial="closed" className="pt-4 border-t border-gold/20">
             <LanguageSwitcher />
           </motion.li>
 
           {/* Book Button */}
-          <motion.li variants={itemVariants} className="pt-4">
+          <motion.li variants={itemVariants} initial="closed" className="pt-4">
             <Button
               variant="primary"
               className="w-full"
