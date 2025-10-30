@@ -17,10 +17,13 @@
   "about": {
     "title": "Sobre Nosotros",
     "subtitle": "Experiencia Internacional",
-    "bio": "Fernando Campos, fundador de Fields Barbers, perfeccionó su arte durante casi dos años en Dublín, donde trabajó en algunas de las barberías más prestigiosas de la ciudad. Su experiencia internacional y dominio del inglés le permiten atender a una clientela diversa, ofreciendo el mismo nivel de excelencia que encontrarías en las mejores barberías europeas, aquí en Córdoba.",
+    "bio": "Fernando Campos, fundador de Fields Barbers, perfeccionó su arte durante casi tres años en Dublín, donde trabajó en algunas de las barberías más prestigiosas de la ciudad. Su experiencia internacional y dominio del inglés le permiten atender a una clientela diversa, ofreciendo el mismo nivel de excelencia que encontrarías en las mejores barberías europeas, aquí en Córdoba.",
     "differentiator": "Servicio en inglés y español",
+    "differentiatorDesc": "Atención bilingüe para clientela internacional y local con el mismo nivel de excelencia",
     "experience": "Experiencia en Dublín",
-    "passion": "Pasión por el detalle"
+    "experienceDesc": "Formación en las barberías más prestigiosas de Irlanda con técnicas europeas avanzadas",
+    "passion": "Pasión por el detalle",
+    "passionDesc": "Dedicación artesanal en cada corte, combinando tradición y tendencias modernas"
   },
   "services": {
     "title": "Nuestros Servicios",

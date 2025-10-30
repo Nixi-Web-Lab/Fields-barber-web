@@ -3,23 +3,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { Award, Globe, Sparkles } from 'lucide-react';
+import { Globe, Gem, Icon, type LucideProps, type IconNode } from 'lucide-react';
+import { barberPole } from '@lucide/lab';
+
+type FeatureIcon =
+  | { type: 'component'; icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>> }
+  | { type: 'node'; icon: IconNode };
 
 export const About: React.FC = () => {
   const t = useTranslations('about');
 
-  const features = [
+  const features: Array<{ iconData: FeatureIcon; title: string; description: string }> = [
     {
-      icon: Globe,
-      label: t('differentiator'),
+      iconData: { type: 'component', icon: Globe },
+      title: t('differentiator'),
+      description: t('differentiatorDesc'),
     },
     {
-      icon: Award,
-      label: t('experience'),
+      iconData: { type: 'node', icon: barberPole },
+      title: t('experience'),
+      description: t('experienceDesc'),
     },
     {
-      icon: Sparkles,
-      label: t('passion'),
+      iconData: { type: 'component', icon: Gem },
+      title: t('passion'),
+      description: t('passionDesc'),
     },
   ];
 
@@ -43,14 +51,14 @@ export const About: React.FC = () => {
               {t('subtitle')}
             </h3>
 
-            <p className="text-gray-custom text-lg leading-relaxed mb-12">
+            <p className="text-gray-custom text-lg text-justify leading-relaxed mb-12">
               {t('bio')}
             </p>
 
             {/* Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {features.map((feature, index) => (
-                <motion.div
+                <motion.article
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -59,10 +67,15 @@ export const About: React.FC = () => {
                   className="flex flex-col items-center gap-4 bg-dark/50 p-6 rounded-lg border border-gold/20"
                 >
                   <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center">
-                    <feature.icon className="w-8 h-8 text-gold" />
+                    {feature.iconData.type === 'node' ? (
+                      <Icon iconNode={feature.iconData.icon} className="w-8 h-8 text-gold" aria-hidden="true" />
+                    ) : (
+                      <feature.iconData.icon className="w-8 h-8 text-gold" aria-hidden="true" />
+                    )}
                   </div>
-                  <span className="text-white text-center">{feature.label}</span>
-                </motion.div>
+                  <h3 className="text-white text-center text-xl font-semibold">{feature.title}</h3>
+                  <p className="text-gray-custom text-center text-sm leading-relaxed">{feature.description}</p>
+                </motion.article>
               ))}
             </div>
           </motion.div>

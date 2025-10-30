@@ -17,10 +17,13 @@
   "about": {
     "title": "About Us",
     "subtitle": "International Experience",
-    "bio": "Fernando Campos, founder of Fields Barbers, honed his craft over nearly two years in Dublin, working at some of the city's most prestigious barbershops. His international experience and fluent English allow him to serve a diverse clientele, bringing the same level of excellence you'd find in Europe's finest barbershops in Córdoba.",
+    "bio": "Fernando Campos, founder of Fields Barbers, honed his craft over nearly three years in Dublin, working at some of the city's most prestigious barbershops. His international experience and fluent English allow him to serve a diverse clientele, bringing the same level of excellence you'd find in Europe's finest barbershops in Córdoba.",
     "differentiator": "English & Spanish service",
+    "differentiatorDesc": "Bilingual service for international and local clients with the same level of excellence",
     "experience": "Dublin experience",
-    "passion": "Passion for detail"
+    "experienceDesc": "Trained at Ireland's most prestigious barbershops with advanced European techniques",
+    "passion": "Passion for detail",
+    "passionDesc": "Artisanal dedication in every cut, combining tradition with modern trends"
   },
   "services": {
     "title": "Our Services",
