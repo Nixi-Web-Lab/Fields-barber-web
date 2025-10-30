@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, stagger } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -99,12 +99,14 @@ const sidebarVariants = {
 const navVariants = {
   open: {
     transition: {
-      delayChildren: stagger(0.07, { startDelay: 0.2 }),
+      delayChildren: 0.2,
+      staggerChildren: 0.07,
     },
   },
   closed: {
     transition: {
-      delayChildren: stagger(0.05, { from: "last" }),
+      staggerChildren: 0.05,
+      staggerDirection: -1,
     },
   },
 };
@@ -243,13 +245,13 @@ export const Header: React.FC = () => {
         <motion.ul
           variants={navVariants}
           initial="closed"
+          animate={isOpen ? "open" : "closed"}
           className="absolute top-24 left-0 right-0 px-8 space-y-6"
         >
           {navLinks.map((link) => (
             <motion.li
               key={link.href}
               variants={itemVariants}
-              initial="closed"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -264,12 +266,12 @@ export const Header: React.FC = () => {
           ))}
 
           {/* Language Switcher */}
-          <motion.li variants={itemVariants} initial="closed" className="pt-4 border-t border-gold/20">
+          <motion.li variants={itemVariants} className="pt-4 border-t border-gold/20">
             <LanguageSwitcher />
           </motion.li>
 
           {/* Book Button */}
-          <motion.li variants={itemVariants} initial="closed" className="pt-4">
+          <motion.li variants={itemVariants} className="pt-4">
             <Button
               variant="primary"
               className="w-full"
