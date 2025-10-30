@@ -47,6 +47,10 @@
     "tagline": "Your trusted barbershop in Córdoba",
     "rights": "All rights reserved",
     "quickLinks": "Quick Links",
-    "social": "Social Media"
+    "social": "Social Media",
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
   }
 }

@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-dark-secondary border-t border-gold/20 py-12">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-8 items-start w-full">
           {/* Logo & Tagline */}
           <div>
             <Image
@@ -20,35 +20,45 @@ export const Footer: React.FC = () => {
               alt="Fields Barbers"
               width={200}
               height={134}
-              className="h-16 w-auto mb-4"
+              className="h-20 md:h-32 w-auto mb-0"
             />
-            <p className="text-gray-custom text-sm">
-              {t('tagline')}
-            </p>
+            <p className="text-gray-custom text-sm me-4 sm:me-0">{t("tagline")}</p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-gold font-semibold mb-4">{t('quickLinks')}</h3>
+          <div className="hidden md:block">
+            <h3 className="text-gold font-semibold mb-4">{t("quickLinks")}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-gray-custom hover:text-gold transition-colors">
-                  Inicio / Home
+                <a
+                  href="#home"
+                  className="text-gray-custom hover:text-gold transition-colors"
+                >
+                  {t("home")}
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-custom hover:text-gold transition-colors">
-                  Servicios / Services
+                <a
+                  href="#services"
+                  className="text-gray-custom hover:text-gold transition-colors"
+                >
+                  {t("services")}
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-gray-custom hover:text-gold transition-colors">
-                  Nosotros / About
+                <a
+                  href="#about"
+                  className="text-gray-custom hover:text-gold transition-colors"
+                >
+                  {t("about")}
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-custom hover:text-gold transition-colors">
-                  Contacto / Contact
+                <a
+                  href="#contact"
+                  className="text-gray-custom hover:text-gold transition-colors"
+                >
+                  {t("contact")}
                 </a>
               </li>
             </ul>
@@ -56,10 +66,13 @@ export const Footer: React.FC = () => {
 
           {/* Social & Contact */}
           <div>
-            <h3 className="text-gold font-semibold mb-4">{t('social')}</h3>
+            <h3 className="text-gold font-semibold mb-4">{t("social")}</h3>
             <div className="space-y-3">
               <a
-                href={`https://instagram.com/${BUSINESS_INFO.contact.instagram.replace('@', '')}`}
+                href={`https://instagram.com/${BUSINESS_INFO.contact.instagram.replace(
+                  "@",
+                  ""
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-gray-custom hover:text-gold transition-colors"
@@ -69,10 +82,6 @@ export const Footer: React.FC = () => {
               </a>
             </div>
           </div>
-        </div>
-
-        <div className="border-t border-gold/20 mt-8 pt-8 text-center text-gray-custom text-sm">
-          <p>&copy; {new Date().getFullYear()} Fields Barbers. {t('rights')}.</p>
         </div>
       </div>
     </footer>
