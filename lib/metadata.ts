@@ -68,5 +68,10 @@ export const getMetadata = (locale: 'es' | 'en'): Metadata => {
         'max-snippet': -1,
       },
     },
+    icons: {
+      icon: '/images/F_gold_icon.ico',
+      shortcut: '/images/F_gold_icon.ico',
+      apple: '/images/F_gold_icon.ico',
+    },
   };
 };
