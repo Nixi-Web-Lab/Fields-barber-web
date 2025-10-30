@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useTranslations, useLocale } from 'next-intl';
 import { Scissors, Clock } from 'lucide-react';
 import { Button } from './ui/Button';
+import { Razor } from './icons/Razor';
 import { SERVICES } from '@/lib/constants';
 
 export const Services: React.FC = () => {
@@ -64,9 +65,25 @@ export const Services: React.FC = () => {
                 whileHover={{ y: -10 }}
               >
                 <div className="flex justify-center mb-6">
-                  <div className="w-20 h-20 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
-                    <Scissors className="w-10 h-10 text-gold" />
-                  </div>
+                  {service.id === 'haircut-beard' ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
+                        <Scissors className="w-7 h-7 text-gold" />
+                      </div>
+                      <span className="text-gold text-2xl font-bold">+</span>
+                      <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
+                        <Razor className="w-7 h-7 text-gold" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-20 h-20 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors">
+                      {service.id === 'beard-trim' ? (
+                        <Razor className="w-10 h-10 text-gold" />
+                      ) : (
+                        <Scissors className="w-10 h-10 text-gold" />
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 <h3 className="text-2xl font-serif text-center mb-4 text-white">
