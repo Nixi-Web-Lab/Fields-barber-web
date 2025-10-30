@@ -3,14 +3,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { ChevronDown } from 'lucide-react';
 import { Button } from './ui/Button';
-import { Scissors } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const t = useTranslations('hero');
 
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* SVG Background with blur effect */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <img
+          src="/images/barber_razor_white.svg"
+          alt=""
+          className="w-full h-full object-contain scale-150 opacity-35 blur-[1.2px] md:scale-95"
+          aria-hidden="true"
+        />
+      </div>
+
       {/* Background overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
 
@@ -21,9 +31,6 @@ export const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="mb-6 flex justify-center">
-            <Scissors className="w-12 h-12 text-gold" />
-          </div>
 
           <h1 className="text-6xl md:text-8xl mb-4 text-white font-serif">
             {t('title')}
@@ -54,14 +61,13 @@ export const Hero: React.FC = () => {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-2 left-1/2 transform -translate-x-1/2 cursor-pointer"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
+        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
       >
-        <div className="w-6 h-10 border-2 border-gold rounded-full flex justify-center pt-2">
-          <div className="w-1 h-3 bg-gold rounded-full" />
-        </div>
+        <ChevronDown className="w-8 h-8 text-gold" />
       </motion.div>
     </section>
   );
