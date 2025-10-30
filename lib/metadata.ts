@@ -4,7 +4,7 @@ export const getMetadata = (locale: 'es' | 'en'): Metadata => {
   const isSpanish = locale === 'es';
 
   return {
-    metadataBase: new URL("fields-barber-web.vercel.app"),
+    metadataBase: new URL("https://fields-barber-web.vercel.app"),
     title: {
       default: isSpanish
         ? "Fields Barbers | Barbería Premium en Córdoba"
