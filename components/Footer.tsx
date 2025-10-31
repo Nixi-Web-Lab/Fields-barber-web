@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Instagram } from 'lucide-react';
 import { BUSINESS_INFO } from '@/lib/constants';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export const Footer: React.FC = () => {
   const t = useTranslations('footer');
@@ -80,6 +81,11 @@ export const Footer: React.FC = () => {
                 <Instagram className="w-5 h-5" />
                 {BUSINESS_INFO.contact.instagram}
               </a>
+            </div>
+
+            {/* Language Switcher */}
+            <div className="mt-6">
+              <LanguageSwitcher />
             </div>
           </div>
         </div>

@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/Button";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 
 // Hook to measure container dimensions
 const useDimensions = (ref: React.RefObject<HTMLDivElement | null>) => {
@@ -197,8 +196,6 @@ export const Header: React.FC = () => {
                 </a>
               ))}
 
-              <LanguageSwitcher />
-
               <Button
                 variant="primary"
                 size="sm"
@@ -264,11 +261,6 @@ export const Header: React.FC = () => {
               </a>
             </motion.li>
           ))}
-
-          {/* Language Switcher */}
-          <motion.li variants={itemVariants} className="pt-4 border-t border-gold/20">
-            <LanguageSwitcher />
-          </motion.li>
 
           {/* Book Button */}
           <motion.li variants={itemVariants} className="pt-4">

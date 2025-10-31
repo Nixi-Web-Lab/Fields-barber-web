@@ -52,5 +52,15 @@
     "services": "Servicios",
     "about": "Nosotros",
     "contact": "Contacto"
+  },
+  "languageModal": {
+    "title": "Idioma del Sitio",
+    "message": "Este sitio se muestra en {language}. ¿Deseas cambiar el idioma?",
+    "keep": "Mantener {language}",
+    "switch": "Switch to {language}"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English"
   }
 }

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { Inter, Playfair_Display, Dancing_Script } from 'next/font/google';
 import { getMetadata } from '@/lib/metadata';
 import { getLocalBusinessSchema } from '@/lib/structured-data';
+import { LanguageModalProvider } from '@/components/LanguageModalProvider';
 import type { Metadata } from 'next';
 import '../globals.css';
 
@@ -60,6 +61,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body className="font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
+          <LanguageModalProvider />
           {children}
         </NextIntlClientProvider>
       </body>
